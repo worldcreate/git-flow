@@ -1,21 +1,22 @@
 
-mod usecase;
+pub mod usecase;
+pub mod repository;
 pub use usecase::IssueUseCase;
 pub use usecase::create_issue_usecase;
 
-struct Issue {
+pub struct Issue {
     id: Option<IssueId>,
     pub title: String,
     label: Vec<String>
 }
 
 #[derive(PartialEq, Debug)]
-struct IssueId {
-    id: i32
+pub struct IssueId {
+    pub id: i32
 }
 
 impl Issue {
-    fn new(title: &str, label: Vec<&str>) -> Issue {
+    pub fn new(title: &str, label: Vec<&str>) -> Issue {
         Issue {id: None, title: title.to_string(), label: label.iter().map(|e| e.to_string()).collect()}
     }
 }

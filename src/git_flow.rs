@@ -1,12 +1,11 @@
-
 extern crate config;
 
-use std::path::Path;
 use std::fs::OpenOptions;
-
-mod issue;
+use std::path::Path;
 
 pub use issue::create_issue_usecase;
+
+pub mod issue;
 
 pub struct GitFlow<'a> {
     issue_usecase: &'a dyn issue::IssueUseCase
@@ -48,6 +47,7 @@ impl<'a> GitFlow<'a> {
 #[cfg(test)]
 mod test {
     use crate::git_flow::*;
+
     #[test]
     fn test_new() {
         let usecase = issue::create_issue_usecase();

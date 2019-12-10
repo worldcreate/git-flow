@@ -5,7 +5,6 @@ pub trait IssueRepository {
     fn create_issue(&self, issue: &Issue) -> Result<IssueId, IssueRepositoryError>;
 }
 
-#[derive(Debug)]
 pub struct IssueRepositoryError {
 
 }

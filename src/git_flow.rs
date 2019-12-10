@@ -1,11 +1,11 @@
 extern crate config;
 
+extern crate domain;
+
 use std::fs::OpenOptions;
 use std::path::Path;
 
-pub use issue::create_issue_usecase;
-
-pub mod issue;
+pub use domain::issue::{self, create_issue_usecase};
 
 pub struct GitFlow<'a> {
     issue_usecase: &'a dyn issue::IssueUseCase

@@ -8,21 +8,14 @@ struct GitlabIssueRepository {
     token: String
 }
 
-
-impl std::convert::From<reqwest::Error> for IssueRepositoryError {
-    fn from(e: reqwest::Error) -> Self {
-        eprintln!("{}", e);
-        IssueRepositoryError {}
-    }
-}
-
 impl IssueRepository for GitlabIssueRepository {
     fn create_issue(&self, issue: &Issue) -> Result<IssueId, IssueRepositoryError> {
 
         let client = reqwest::Client::builder()
             .gzip(true)
             .danger_accept_invalid_certs(true)
-            .build()?;
+            .build()
+            .map_err(|e| IssueRepositoryError{})?;
 
         let mut params = HashMap::new();
         params.insert("title", issue.title.clone());
@@ -30,9 +23,10 @@ impl IssueRepository for GitlabIssueRepository {
         let mut res = client.post("https://gitlab2.zyyx.jp/api/v4/projects/723/issues")
             .header("PRIVATE-TOKEN", "zkyA9csYPfhxKm8waQkz")
             .form(&params)
-            .send()?;
+            .send()
+            .map_err(|e| IssueRepositoryError{})?;
 
-        let json: ResponseCreateIssue = res.json()?;
+        let json: ResponseCreateIssue = res.json().map_err(|e| IssueRepositoryError{})?;
 
         Ok(IssueId {id: json.iid})
     }

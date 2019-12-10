@@ -1,6 +1,5 @@
 
 mod git_flow;
-mod infrastructure;
 
 use git_flow::GitFlowError;
 use std::fs::OpenOptions;

@@ -1,8 +1,10 @@
 use std::collections::HashMap;
 
+extern crate domain;
+
 use serde::{Deserialize, Serialize};
-use crate::git_flow::issue::{Issue, IssueId};
-use crate::git_flow::issue::repository::{IssueRepository, IssueRepositoryError};
+use domain::issue::{Issue, IssueId};
+use domain::issue::repository::{IssueRepository, IssueRepositoryError};
 
 struct GitlabIssueRepository {
     token: String

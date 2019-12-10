@@ -1,6 +1,7 @@
 extern crate config;
 
 extern crate domain;
+extern crate infrastructure;
 
 use std::fs::OpenOptions;
 use std::path::Path;

@@ -11,7 +11,12 @@
       <sourceFolder url="file://$MODULE_DIR$/domain/examples" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/domain/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/domain/benches" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/infrastructure/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/infrastructure/examples" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/infrastructure/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/infrastructure/benches" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/domain/target" />
+      <excludeFolder url="file://$MODULE_DIR$/infrastructure/target" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="inheritedJdk" />

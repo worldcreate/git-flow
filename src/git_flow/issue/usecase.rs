@@ -6,7 +6,8 @@ use serde::{Serialize, Deserialize};
 pub struct CreateIssue<'a> {
     pub title: &'a str,
     pub description: &'a str,
-    pub todos: Vec<&'a str>
+    pub todos: Vec<&'a str>,
+    pub labels: Vec<&'a str>
 }
 
 pub trait IssueUseCase {
@@ -21,7 +22,7 @@ struct IssueUseCaseInteractor {}
 
 impl IssueUseCase for IssueUseCaseInteractor {
     fn create_issue(&self, create_issue: &CreateIssue) {
-        Issue::new(create_issue.title);
+        Issue::new(create_issue.title, create_issue.labels.clone());
     }
 }
 
@@ -76,9 +77,14 @@ struct ResponseCreateIssue {
 #[cfg(test)]
 mod test {
     use super::super::usecase::*;
+    use super::{Issue, IssueId};
     #[test]
     fn test_create_issue() {
-        let issue = Issue::new("test");
-        assert_eq!((GitlabIssueRepository {token: "".to_string()}).create_issue(&issue).unwrap(), IssueId{id: 0});
+        let issue = Issue::new("test", vec!("bug", "feature"));
+        assert!(match (GitlabIssueRepository {token: "".to_string()}).create_issue(&issue) {
+            Ok(_) => true,
+            Err(_) => false
+        });
+
     }
 }

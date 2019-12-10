@@ -29,7 +29,8 @@ mod test {
             &usecase::CreateIssue {
                 title: "title",
                 description: "description",
-                todos: vec!["todo1", "todo2"]
+                todos: vec!["todo1", "todo2"],
+                labels: vec!("bug", "feature")
             });
     }
 }    

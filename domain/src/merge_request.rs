@@ -1,3 +1,4 @@
+use crate::UseCaseError;
 
 struct MergeRequest {
     id: Option<i32>
@@ -13,24 +14,20 @@ struct CreateMergeRequest {
 
 }
 
-trait MergeRequestUseCase {
-    fn create_merge_request(&self, param: &CreateMergeRequest);
-}
-
-
-struct MergeRequestUseCaseInteractor {
+struct CreateMergeRequestUseCaseInteractor {
 
 }
 
-impl MergeRequestUseCaseInteractor {
-    fn new() -> MergeRequestUseCaseInteractor {
-        MergeRequestUseCaseInteractor{}
+impl CreateMergeRequestUseCaseInteractor {
+    fn new() -> CreateMergeRequestUseCaseInteractor {
+        CreateMergeRequestUseCaseInteractor {}
     }
 }
 
-impl MergeRequestUseCase for MergeRequestUseCaseInteractor {
-    fn create_merge_request(&self, param: &CreateMergeRequest) {
+impl super::UseCase<CreateMergeRequest, ()>  for CreateMergeRequestUseCaseInteractor {
+    fn exec(&self, param: CreateMergeRequest) -> Result<(), UseCaseError> {
         MergeRequest::new();
+        Ok(())
     }
 }
 
@@ -40,12 +37,13 @@ trait MergeRequestRepository {
 
 #[cfg(test)]
 mod tests {
+    use super::super::UseCase;
     use super::*;
 
     #[test]
     fn test_new() {
-        let use_case_interactor = MergeRequestUseCaseInteractor::new();
+        let use_case_interactor = CreateMergeRequestUseCaseInteractor::new();
         let merge_request = CreateMergeRequest {};
-        use_case_interactor.create_merge_request(&merge_request);
+        use_case_interactor.exec(merge_request);
     }
 }

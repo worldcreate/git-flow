@@ -11,10 +11,6 @@ pub struct CreateIssue<'a> {
     pub labels: Vec<&'a str>
 }
 
-pub trait IssueUseCase {
-    fn create_issue(&self, issue_param: &CreateIssue);
-}
-
 pub fn create_issue_usecase() -> impl IssueUseCase {
     return IssueUseCaseInteractor {}
 }
